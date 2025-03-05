@@ -8,10 +8,13 @@ import SignUp from './auth/SignUp';
 import TwoAuth from './auth/TwoAuth';
 import Dashboard from './dashboard/Dashboard';
 import AboutPage from './components/AboutPage';
+import UnAvailable from './errors/404';
+import { ThemeProvider } from './components/theme-provider';
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
      <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -20,7 +23,9 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/auth/twoauth" element={<TwoAuth />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<UnAvailable />} /> {/* Catch-all route */}
       </Routes>
     </Router>
+    </ThemeProvider>
   </StrictMode>,
 )
